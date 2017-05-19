@@ -17,9 +17,13 @@ class SYBAppDelegate: UIResponder, UIApplicationDelegate{
     
         self.window = UIWindow();
         self.window?.makeKeyAndVisible()
-        
-        let rootVC = UINavigationController.init(rootViewController: SYBCollectionViewController())
+        let rootVC = UINavigationController()
         self.window?.rootViewController = rootVC
+        
+        
+        let vc:UIViewController = SYBViewController.initFromNib()
+        rootVC.pushViewController(vc, animated: false)
+        
         return true;
     }
     

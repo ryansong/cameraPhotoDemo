@@ -10,9 +10,32 @@ import UIKit
 import Photos
 
 class SYBLibraryViewModel: NSObject {
+    
+    
     var status:PHAuthorizationStatus {
         get {
           return PHPhotoLibrary.authorizationStatus()
+        }
+    }
+    
+    private var topCollection:PHFetchResult<PHCollection>? = nil
+    var topPHCollections:PHFetchResult<PHCollection>? {
+        get {
+            let phOptions = PHFetchOptions.init()
+            phOptions.includeHiddenAssets = true
+            phOptions.includeAllBurstAssets = true
+            
+            self.topCollection = PHCollection.fetchTopLevelUserCollections(with: phOptions)
+            return self.topCollection
+        }
+    }
+    
+    var photos:[SYBImageAssetModel] = []
+    
+    open class var shared: SYBLibraryViewModel {
+        get{
+            let s = SYBLibraryViewModel()
+            return s
         }
     }
     
@@ -30,6 +53,8 @@ class SYBLibraryViewModel: NSObject {
                 alert.addAction(action)
                 alert.addAction(cancelAction)
             })
+        } else {
+            handler(self.status);
         }
     }
     
@@ -44,23 +69,41 @@ class SYBLibraryViewModel: NSObject {
             handler(self.status)
             break
         }
-        
     }
+    
+    func fetchPhotoCollection(collection coll:PHCollection?, fetchBlock:((PHFetchResult<PHCollection>)->Void)?) -> Void {
+       
+        let phOptions = PHFetchOptions.init()
+        phOptions.includeHiddenAssets = true
+        phOptions.includeAllBurstAssets = true
+        
+        var result:PHFetchResult<PHCollection>? = nil
+        if (coll == nil) {
+           result = PHCollection.fetchTopLevelUserCollections(with: phOptions)
+        } else {
+            result = PHCollection.fetchCollections(in: coll as! PHCollectionList, options: phOptions)
+        }
+        
+        
+        if (fetchBlock != nil) {
+            fetchBlock!(result)
+        }
+    }
+    
 }
-
 
 extension UIAlertController {
     class func showAlert(_ vcBlock:(UIAlertController) -> Void) -> Void {
         let alertVC = UIAlertController.init(title: "", message: "", preferredStyle: .alert)
         vcBlock(alertVC)
-        let rootVC = UIApplication.shared.keyWindow?.rootViewController
-        if (rootVC?.isKind(of: UINavigationController.self))! {
+        let rootVC:UIViewController = (UIApplication.shared.delegate?.window??.rootViewController)!
+        if (rootVC.isKind(of: UINavigationController.self)) {
             let topVC = (rootVC as! UINavigationController).viewControllers.first
             topVC?.present(alertVC, animated: true, completion: nil)
             
             return
             }
-        rootVC?.present(alertVC, animated: true, completion: nil)
+        rootVC.present(alertVC, animated: true, completion: nil)
     }
 }
 

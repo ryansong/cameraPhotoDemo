@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9410F5A01EBAF6D000C6B5E3 /* SYBImageAssetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9410F59F1EBAF6D000C6B5E3 /* SYBImageAssetModel.swift */; };
+		9410F5A21EBB217100C6B5E3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9410F5A11EBB217100C6B5E3 /* Main.storyboard */; };
+		9410F5A41EBB2A4B00C6B5E3 /* SYBCollectionViewLineLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9410F5A31EBB2A4B00C6B5E3 /* SYBCollectionViewLineLayout.swift */; };
+		9410F5A61EC08AEB00C6B5E3 /* SYBCollectionFolderViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9410F5A51EC08AEB00C6B5E3 /* SYBCollectionFolderViewCell.swift */; };
 		947DD0D01EB88E8E003142AE /* SYBViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947DD0CF1EB88E8E003142AE /* SYBViewController.swift */; };
 		947DD0D21EB89A36003142AE /* SYBCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947DD0D11EB89A36003142AE /* SYBCollectionViewController.swift */; };
 		947DD0D41EB89A90003142AE /* SYBCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947DD0D31EB89A90003142AE /* SYBCollectionViewCell.swift */; };
@@ -36,6 +40,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9410F59F1EBAF6D000C6B5E3 /* SYBImageAssetModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SYBImageAssetModel.swift; sourceTree = "<group>"; };
+		9410F5A11EBB217100C6B5E3 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		9410F5A31EBB2A4B00C6B5E3 /* SYBCollectionViewLineLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SYBCollectionViewLineLayout.swift; sourceTree = "<group>"; };
+		9410F5A51EC08AEB00C6B5E3 /* SYBCollectionFolderViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SYBCollectionFolderViewCell.swift; sourceTree = "<group>"; };
 		947DD0CF1EB88E8E003142AE /* SYBViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SYBViewController.swift; sourceTree = "<group>"; };
 		947DD0D11EB89A36003142AE /* SYBCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SYBCollectionViewController.swift; sourceTree = "<group>"; };
 		947DD0D31EB89A90003142AE /* SYBCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SYBCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -119,9 +127,13 @@
 				947DD0DC1EB9B577003142AE /* SYBApplicationDelegate.swift */,
 				947DD0CF1EB88E8E003142AE /* SYBViewController.swift */,
 				947DD0D11EB89A36003142AE /* SYBCollectionViewController.swift */,
+				9410F5A31EBB2A4B00C6B5E3 /* SYBCollectionViewLineLayout.swift */,
 				947DD0D51EB96D25003142AE /* SYBLibraryViewModel.swift */,
 				947DD0D31EB89A90003142AE /* SYBCollectionViewCell.swift */,
+				9410F5A51EC08AEB00C6B5E3 /* SYBCollectionFolderViewCell.swift */,
+				9410F59F1EBAF6D000C6B5E3 /* SYBImageAssetModel.swift */,
 				CFD5B73B18F5377600693918 /* Images.xcassets */,
+				9410F5A11EBB217100C6B5E3 /* Main.storyboard */,
 				947DD1181EB9BE43003142AE /* LaunchScreen.storyboard */,
 				CFD5B72A18F5377600693918 /* Supporting Files */,
 			);
@@ -241,6 +253,7 @@
 				947DD1191EB9BE43003142AE /* LaunchScreen.storyboard in Resources */,
 				CFD5B73C18F5377600693918 /* Images.xcassets in Resources */,
 				CFD5B72E18F5377600693918 /* InfoPlist.strings in Resources */,
+				9410F5A21EBB217100C6B5E3 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,11 +272,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9410F5A41EBB2A4B00C6B5E3 /* SYBCollectionViewLineLayout.swift in Sources */,
 				947DD0D41EB89A90003142AE /* SYBCollectionViewCell.swift in Sources */,
 				947DD0D01EB88E8E003142AE /* SYBViewController.swift in Sources */,
 				947DD0D61EB96D25003142AE /* SYBLibraryViewModel.swift in Sources */,
 				947DD0DD1EB9B577003142AE /* SYBApplicationDelegate.swift in Sources */,
 				947DD0D21EB89A36003142AE /* SYBCollectionViewController.swift in Sources */,
+				9410F5A01EBAF6D000C6B5E3 /* SYBImageAssetModel.swift in Sources */,
+				9410F5A61EC08AEB00C6B5E3 /* SYBCollectionFolderViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="VMU-Zj-ZxP">
+            <objects>
+                <viewController storyboardIdentifier="SYBViewController" id="ziM-MB-8ra" customClass="SYBViewController" customModule="cameraPhotoDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="F4Z-sm-gfX"/>
+                        <viewControllerLayoutGuide type="bottom" id="CF9-4a-sxM"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="qWq-Xz-U31">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fDb-FJ-SXh">
+                                <rect key="frame" x="67" y="37" width="240" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="fDb-FJ-SXh" secondAttribute="height" multiplier="15:8" id="Qdf-Y0-grc"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xtv-is-N0G">
+                                <rect key="frame" x="150" y="252" width="75" height="30"/>
+                                <state key="normal" title="Pick Image"/>
+                                <connections>
+                                    <action selector="pickImageAction:" destination="ziM-MB-8ra" eventType="touchUpInside" id="B7N-tW-obR"/>
+                                </connections>
+                            </button>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="jGA-4b-T2B">
+                                <rect key="frame" x="65" y="194" width="244" height="31"/>
+                            </slider>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="jGA-4b-T2B" firstAttribute="top" secondItem="fDb-FJ-SXh" secondAttribute="bottom" constant="29" id="3id-4F-Hcg"/>
+                            <constraint firstItem="jGA-4b-T2B" firstAttribute="centerX" secondItem="qWq-Xz-U31" secondAttribute="centerX" id="60d-qB-HUh"/>
+                            <constraint firstItem="jGA-4b-T2B" firstAttribute="width" secondItem="fDb-FJ-SXh" secondAttribute="width" id="AFq-95-y8J"/>
+                            <constraint firstItem="fDb-FJ-SXh" firstAttribute="top" secondItem="F4Z-sm-gfX" secondAttribute="bottom" constant="17" id="Rzn-XW-emm"/>
+                            <constraint firstItem="Xtv-is-N0G" firstAttribute="top" secondItem="fDb-FJ-SXh" secondAttribute="bottom" constant="87" id="XvK-cu-ysK"/>
+                            <constraint firstItem="Xtv-is-N0G" firstAttribute="centerX" secondItem="qWq-Xz-U31" secondAttribute="centerX" id="lrd-mO-CzV"/>
+                            <constraint firstItem="fDb-FJ-SXh" firstAttribute="leading" secondItem="qWq-Xz-U31" secondAttribute="leadingMargin" constant="51" id="oid-4y-52i"/>
+                            <constraint firstItem="fDb-FJ-SXh" firstAttribute="centerX" secondItem="qWq-Xz-U31" secondAttribute="centerX" id="qPw-ZL-5Dy"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="fDb-FJ-SXh" id="F5S-FK-vtL"/>
+                        <outlet property="slider" destination="jGA-4b-T2B" id="7Ma-OQ-OZR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ucf-1h-fmX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-158" y="52"/>
+        </scene>
+    </scenes>
+</document>

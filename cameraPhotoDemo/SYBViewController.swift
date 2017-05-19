@@ -7,9 +7,42 @@
 //
 
 import UIKit
+import Photos
 
 class SYBViewController: UIViewController {
 
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var slider: UISlider!
+    
+    class func initFromNib() -> SYBViewController {
+        let vc:SYBViewController = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "SYBViewController") as! SYBViewController
+        
+        return vc
+    }
+    
+    var imageOption:PHImageRequestOptions {
+        get {
+            let op:PHImageRequestOptions = PHImageRequestOptions()
+            op.version = .current
+            op.deliveryMode = .opportunistic
+            op.resizeMode = .fast
+            op.isNetworkAccessAllowed = true
+            op.isSynchronous = false
+            
+            self.slider.maximumValue = 1.0;
+            self.slider.minimumValue = 0.0;
+            weak var weakSelf = self
+            op.progressHandler = { rate, error, isStop, dict in
+                weakSelf?.slider.value = Float(rate)
+            }
+            return op
+        }
+    }
+    
+    @IBAction func pickImageAction(_ sender: Any) {
+        let vc = SYBCollectionViewController()
+        self.navigationController?.show(vc, sender: nil)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 

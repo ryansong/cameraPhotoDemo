@@ -13,14 +13,22 @@ private let reuseIdentifier = "Cell"
 
 class SYBCollectionViewController: UICollectionViewController {
     
-    let viewModel = SYBLibraryViewModel()
+    let viewModel:SYBLibraryViewModel = SYBLibraryViewModel.shared
+    
+    var currentCollection:PHCollection? = nil
+    var array:PHFetchResult<PHCollection>? = nil
     
     convenience init() {
-        self.init(collectionViewLayout: UICollectionViewFlowLayout())
+        let layout = SYBCollectionViewLineLayout()
+        layout.height = 44;
+        
+        self.init(collectionViewLayout:layout)
+        
     }
     
     override init(collectionViewLayout layout: UICollectionViewLayout) {
         super.init(collectionViewLayout: layout)
+    
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -32,7 +40,18 @@ class SYBCollectionViewController: UICollectionViewController {
 
         self.title = NSLocalizedString("Library", comment: "Library")
         self.collectionView?.backgroundColor = UIColor.white
-    
+
+        // Uncomment the following line to preserve selection between presentations
+        // self.clearsSelectionOnViewWillAppear = false
+
+        // Register cell classes
+        self.collectionView!.register(SYBCollectionFolderViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+
+        // Do any additional setup after loading the view.
+
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
         self.viewModel.requestAuthorMask { (status) in
             switch status{
             case .denied, .restricted:
@@ -41,21 +60,20 @@ class SYBCollectionViewController: UICollectionViewController {
                 })
                 break
             case.authorized:
+               
+                weak var weakself = self;
+                self.viewModel.fetchPhotoCollection(collection: nil, fetchBlock: { (array) in
+                    weakself?.array = array;
+                    weakself?.collectionView?.reloadData()
+                })
+                
                 break
             default:
                 break
             }
         }
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Register cell classes
-        self.collectionView!.register(SYBCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-
-        // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -73,24 +91,24 @@ class SYBCollectionViewController: UICollectionViewController {
 
     // MARK: UICollectionViewDataSource
 
-    override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        if (self.array != nil) {
+            return (self.array?.count)!
+        }
         return 0
     }
 
-
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
-        // #TODO
-        return 10
-    }
-
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell:SYBCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! SYBCollectionViewCell
+        let cell:SYBCollectionFolderViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! SYBCollectionFolderViewCell
     
-        
-        cell.imageView.image = UIImage(named:"")
+        let model = self.array?.object(at: indexPath.row)
+        cell.textLabel.text = model?.localizedTitle
         return cell
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
     }
 
     // MARK: UICollectionViewDelegate
